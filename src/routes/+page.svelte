@@ -36,7 +36,7 @@
 <form on:formdata={formSubmit}>
     <h2>Colours</h2>
     <TextInput name="primary" label="Primary color*" required={true}/>
-    <TextInput name="primary" label="Secondary color" required={false}/>
+    <TextInput name="secondary" label="Secondary color" required={false}/>
     <h2>Options</h2>
     <ul>
         <li>

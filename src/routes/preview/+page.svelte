@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { hexFromArgb, labFromArgb, type Hct } from "@material/material-color-utilities";
+    import ColorPreview from "$lib/ColorPreview.svelte";
+    import type { IPalette } from "$lib/generation";
+import { hexFromArgb, labFromArgb, type Hct } from "@material/material-color-utilities";
 
     export let data: {
-        colors: string[]
+        colors: IPalette
     };
 
 </script>
 
+<ColorPreview colorName="Primary" colors={data.colors.primary}/>
+{#if data.colors.secondary}
+<ColorPreview colorName="Secondary" colors={data.colors.secondary}/>
+{/if}
 
-{#each data.colors as color}
-    <div style={`width: 50px; height: 50px; border-radius: 4px; background: ${color}`}></div> 
-{/each}
+
