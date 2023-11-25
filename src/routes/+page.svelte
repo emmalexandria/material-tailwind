@@ -4,21 +4,24 @@
     import SchemePreview from '$lib/SchemePreview.svelte';
     import { onMount } from 'svelte';
     import { getScheme } from '$lib/generation';
+    import Export from '$lib/Export.svelte';
 
 </script>
 
 <div class="w-fit mx-auto">
 <h1 class="text-5xl text-center">Material Tailwind Scheme Generator</h1>
-<div>
-    <h2 class="text-3xl">Step 1: Configuration</h2>
+<div class="space-y-4">
+    <h2 class="text-3xl text-center">Step 1: Configuration</h2>
     <ConfigForm/>
     {#if $config}
-    <h2 class="text-3xl">Step 2: Preview</h2>
+    <h2 class="text-3xl text-center">Step 2: Preview</h2>
         <SchemePreview/>
     {/if}
     {#if $scheme}
-        <h2 class="text-3xl">Step 3: Export</h2>
+        <h2 class="text-3xl text-center">Step 3: Export</h2>
+        <Export/>
     {/if}
+    
 </div>
     
 </div>

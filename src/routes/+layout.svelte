@@ -15,4 +15,9 @@
 <main class="px-8 py-8 w-full h-full" style={`background-color: ${hexFromArgb($scheme.light.background)} color: ${hexFromArgb($scheme.light.onBackground)}`}>
   <slot />
 </main>
+{:else}
+<main>
+  <p>Loading...</p>
+</main>
+
 {/if}
