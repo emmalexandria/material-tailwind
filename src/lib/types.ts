@@ -3,6 +3,7 @@ export interface IConfig {
     secondary: string | undefined,
     surfaceBackground: boolean,
     elevation: boolean,
-    typography: boolean
-}
+    typography: boolean,            
 
+    scheme?: boolean,
+}

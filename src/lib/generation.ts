@@ -1,6 +1,6 @@
 import type { IConfig } from "./types";
 
-import { CorePalette, argbFromHex, hexFromArgb } from "@material/material-color-utilities";
+import { CorePalette, Scheme, argbFromHex, hexFromArgb } from "@material/material-color-utilities";
 import type { CorePaletteColors, Hct, TonalPalette } from "@material/material-color-utilities";
 
 export interface IPalette {
@@ -9,7 +9,7 @@ export interface IPalette {
 }
 
 
-export async function generateColors(config: IConfig) {
+export function generateColors(config: IConfig) {
     const primary = argbFromHex(config.primary);
     let secondary = undefined;
     if (config.secondary) {
@@ -23,17 +23,64 @@ export async function generateColors(config: IConfig) {
 
     const genPalette = CorePalette.fromColors(coreColors);
 
-    /* const primaryPalette = getHexTones(genPalette.a1);
+    return generateScheme(genPalette);
+}
+
+export function getScheme(config: IConfig) {
+    const primary = argbFromHex(config.primary);
+    let secondary = undefined;
+    if (config.secondary) {
+        secondary = argbFromHex(config.secondary);
+    }
+
+    const coreColors: CorePaletteColors = {
+        primary: primary,
+        secondary: secondary,
+    }
+
+    const genPalette = CorePalette.fromColors(coreColors);
+    return generateScheme(genPalette);
+}
+
+export function getShades(config: IConfig) {
+    const primary = argbFromHex(config.primary);
+    let secondary = undefined;
+    if (config.secondary) {
+        secondary = argbFromHex(config.secondary);
+    }
+
+    const coreColors: CorePaletteColors = {
+        primary: primary,
+        secondary: secondary,
+    }
+
+    const genPalette = CorePalette.fromColors(coreColors);
+
+    return generatePalette(genPalette, secondary != undefined)
+}
+
+function generateScheme(corePalette: CorePalette) {
+    const schemeLight = Scheme.lightFromCorePalette(corePalette);
+    const schemeDark = Scheme.darkFromCorePalette(corePalette);
+
+    return {
+        light: schemeLight,
+        dark: schemeDark,
+    }
+}
+
+function generatePalette(corePalette: CorePalette, secondary: boolean) {
+    const primaryPalette = getHexTones(corePalette.a1);
 
     let secondaryPalette = undefined;
-    if (coreColors.secondary) secondaryPalette = getHexTones(genPalette.a2);
+    if (secondary) secondaryPalette = getHexTones(corePalette.a2);
 
     const palette: IPalette = {
         primary: primaryPalette,
         secondary: secondaryPalette,
     }
 
-    return palette; */
+    return palette; 
 }
 
 export function getHexTones(palette: TonalPalette) {
