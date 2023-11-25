@@ -6,6 +6,8 @@
     import { getScheme } from '$lib/generation';
     import Export from '$lib/Export.svelte';
 
+
+    $: $scheme = getScheme($config);
 </script>
 
 <div class="w-fit mx-auto">

@@ -3,10 +3,12 @@
     import SchemeColor from "./SchemeColor.svelte";
     import { getSchemeArray } from "./generation";
 
+
     export let scheme: Scheme;
     export let dark: boolean;
 
     let schemeHex = getSchemeArray(scheme, dark);
+
 
 </script>
 

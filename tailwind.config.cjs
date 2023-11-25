@@ -3,7 +3,12 @@ const config = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
 
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ['"Roboto Flex Variable"', "ui-sans-serif"]
+    },
+    extend: {
+
+    },
   },
 
   plugins: [],

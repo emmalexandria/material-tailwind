@@ -4,6 +4,7 @@
     import type { IConfig } from './types';
     import { config, scheme } from './stores';
     import { hexFromArgb } from '@material/material-color-utilities';
+    import ColorInput from './ColorInput.svelte';
     let form: HTMLFormElement
 
     const formData = (e: SubmitEvent) => {
@@ -11,7 +12,6 @@
         
         const formData = new FormData(form);
         const primary = formData.get("primary") as FormDataEntryValue
-
 
         const formConfig: IConfig = {
             primary: primary.toString(),
@@ -26,7 +26,8 @@
 
 <div class="border-2 rounded-md w-max px-8 py-4 mx-auto">
 <form on:submit={formData} bind:this={form}>
-    <TextInput name="primary" label="Primary color*" required={true} value={hexFromArgb($scheme.light.primary)}/>
+    <ColorInput name="primary" value={$config.primary}/>
+    <ColorInput name="secondary" value={$config.secondary != undefined ? $config.secondary : "#000000"}/>
     <TextInput name="secondary" label="Secondary color" required={false}/>
     <TextInput name="tertiary" label="Tertiary color" required={false}/>
     <TextInput name="error" label="Error color" required={false}/>
