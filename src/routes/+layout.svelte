@@ -3,6 +3,7 @@
     import { config, scheme } from "$lib/stores";
     import { getScheme } from "$lib/generation";
     import { onMount } from "svelte";
+    import { hexFromArgb } from "@material/material-color-utilities";
 
 
     onMount(() => {
@@ -11,7 +12,7 @@
 </script>
 
 {#if $scheme}
-<main class="px-8 py-8 w-full h-full" style={`background-color: ${$scheme.light.background} color: ${$scheme.light.onBackground}`}>
+<main class="px-8 py-8 w-full h-full" style={`background-color: ${hexFromArgb($scheme.light.background)} color: ${hexFromArgb($scheme.light.onBackground)}`}>
   <slot />
 </main>
 {/if}
