@@ -3,9 +3,6 @@
   import Navbar from "$lib/Navbar.svelte";
 </script>
 
-<header class="px-8 py-4">
-  <Navbar />
-</header>
-<main class="px-8">
+<main class="px-8 py-8 w-fit mx-auto">
   <slot />
 </main>

@@ -1,14 +1,21 @@
 <script lang="ts">
-    import { config } from '$lib/stores';
+    import { config, scheme } from '$lib/stores';
     import ConfigForm from '$lib/ConfigForm.svelte';
     import SchemePreview from '$lib/SchemePreview.svelte';
 
     $: console.log($config)
 </script>
 
-<h1>Step 1: Configuration</h1>
-<ConfigForm/>
-{#if $config}
-    <SchemePreview/>
-{/if}
+<h1 class="text-5xl text-center">Material Tailwind Scheme Generator</h1>
+<div>
+    <h2 class="text-3xl">Step 1: Configuration</h2>
+    <ConfigForm/>
+    {#if $config}
+    <h2 class="text-3xl">Step 2: Preview</h2>
+        <SchemePreview/>
+    {/if}
+    {#if scheme}
+        <h2 class="text-3xl">Step 3: Export</h2>
+    {/if}
+</div>
 

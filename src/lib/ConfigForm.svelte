@@ -28,7 +28,7 @@
 
 </script>
 
-<div class="border-2 rounded-md w-max px-8 py-4">
+<div class="border-2 rounded-md w-max px-8 py-4 mx-auto">
 <form on:submit={formData} bind:this={form}>
     <h2>Colours</h2>
     <TextInput name="primary" label="Primary color*" required={true}/>
