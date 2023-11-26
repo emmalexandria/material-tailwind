@@ -4,8 +4,9 @@
     import { scheme } from "./stores";
     import Button from "./Button.svelte";
 
-    let tailwindConfig = getTailwindColors($scheme)
+    let tailwindConfig: string;
 
+    $: tailwindConfig = getTailwindColors($scheme)
     const copyToClipboard = () => {
         navigator.clipboard.writeText(JSON.stringify(tailwindConfig, undefined, 2))
     }
