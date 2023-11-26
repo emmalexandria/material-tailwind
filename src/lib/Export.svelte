@@ -1,7 +1,8 @@
 <script lang="ts">
     import { hexFromArgb } from "@material/material-color-utilities";
-    import { getTailwindColors } from "./generation";
+    import { getTailwindColors } from "./colors";
     import { scheme } from "./stores";
+    import Button from "./Button.svelte";
 
     let tailwindConfig = getTailwindColors($scheme)
 
@@ -10,6 +11,7 @@
     }
 </script>
 
-<h2 class="text-center text-xl">Put this in the colors section of tailwind.config.js</h2>
-<pre id="json" class="h-96 overflow-y-auto">{JSON.stringify(tailwindConfig, undefined, 2)}</pre>
-<button on:click={copyToClipboard} class="px-4 py-2 rounded-full" style={`background-color: ${hexFromArgb($scheme.light.primary)}; color: ${hexFromArgb($scheme.light.onPrimary)}`}>Copy to clipboard</button>
+<p class="italic text-center my-2">Put this in the colors section of tailwind.config.js</p>
+<pre id="json" class="h-96 overflow-y-auto bg-surface-variant rounded">{JSON.stringify(tailwindConfig, undefined, 2)}</pre>
+
+<Button on:click={copyToClipboard} type="button">Copy to clipboard</Button>

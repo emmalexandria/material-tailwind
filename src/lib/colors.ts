@@ -3,6 +3,8 @@ import type { IColor, IConfig } from "./types";
 import { CorePalette, Scheme, argbFromHex, hexFromArgb } from "@material/material-color-utilities";
 import type { CorePaletteColors, Hct, TonalPalette } from "@material/material-color-utilities";
 
+
+
 export interface IPalette {
     primary: string[],
     secondary?: string[]
@@ -11,14 +13,15 @@ export interface IPalette {
 
 export function getScheme(config: IConfig) {
     const primary = argbFromHex(config.primary);
-    let secondary = undefined;
-    if (config.secondary) {
-        secondary = argbFromHex(config.secondary);
-    }
+    let secondary = config.secondary ? argbFromHex(config.secondary) : undefined;
+    let tertiary = config.tertiary ? argbFromHex(config.tertiary) : undefined;
+    let error = config.error ? argbFromHex(config.error) : undefined;
 
     const coreColors: CorePaletteColors = {
-        primary: primary,
-        secondary: secondary,
+        primary,
+        secondary,
+        tertiary,
+        error,
     }
 
     const genPalette = CorePalette.fromColors(coreColors);

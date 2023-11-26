@@ -1,26 +1,20 @@
 <script lang="ts">
   import "../app.css";
     import { config, scheme } from "$lib/stores";
-    import { getScheme } from "$lib/generation";
-    import { onMount } from "svelte";
-    import Loading from "$lib/Loading.svelte";
+    import { getScheme } from "$lib/colors";
 
     import '@fontsource-variable/roboto-flex';
-    import { hexFromArgb } from "@material/material-color-utilities";
-
-
-    onMount(() => {
-        $scheme = getScheme($config)
+    onMount(async () => {
+      // @ts-ignore
+      import('@material-tailwind/html/scripts/ripple')
     })
+
+    import { onMount } from "svelte";
+    $: $scheme = getScheme($config);
 </script>
 
 
-{#if $scheme}
-<main class="px-8 py-8 w-full h-full" style={`background-color: ${hexFromArgb($scheme.light.background)} color: ${hexFromArgb($scheme.light.onBackground)}`}>
+
+<main class="px-16 py-16 w-full h-full bg-background">
   <slot />
 </main>
-{:else}
-<main class="roboto">
-  <Loading/>
-</main>
-{/if}

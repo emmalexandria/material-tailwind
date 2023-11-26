@@ -1,40 +1,69 @@
 <script lang="ts">
-    import TextInput from '$lib/TextInput.svelte';
-    import SubmitButton from '$lib/SubmitButton.svelte';
-    import type { IConfig } from './types';
-    import { config, scheme } from './stores';
-    import { hexFromArgb } from '@material/material-color-utilities';
-    import ColorInput from './ColorInput.svelte';
-    let form: HTMLFormElement
+    import TextInput from "$lib/TextInput.svelte";
+    import SubmitButton from "$lib/Button.svelte";
+    import type { IConfig } from "./types";
+    import { config, scheme } from "./stores";
+    import { hexFromArgb } from "@material/material-color-utilities";
+    import ColorInput from "./ColorInput.svelte";
+    import { updateUIColors } from "./ui";
+    import { getHexTones, getSchemeArray } from "./colors";
 
-    const formData = (e: SubmitEvent) => {
+    let primary: string = $config.primary;
+    let secondary: string =
+        $config.secondary != undefined ? $config.secondary : "#000000";
+    let tertiary: string =
+        $config.tertiary != undefined ? $config.tertiary : "#000000";
+    let error: string = $config.error != undefined ? $config.error : "#000000";
+    let secondaryEnabled = false;
+    let tertiaryEnabled = false;
+    let errorEnabled = false;
+
+    const formSubmitHandler = (e: SubmitEvent) => {
         e.preventDefault();
-        
-        const formData = new FormData(form);
-        const primary = formData.get("primary") as FormDataEntryValue
 
         const formConfig: IConfig = {
-            primary: primary.toString(),
-            secondary: formData.get("secondary")?.toString(),
-
+            primary
         }
 
-        $config = formConfig;
-    }
+        if(secondaryEnabled) formConfig["secondary"] = secondary
+        if(tertiaryEnabled) formConfig["tertiary"] = tertiary
+        if(errorEnabled) formConfig["error"] = error
 
+        console.log(formConfig)
+
+        $config = formConfig;
+        /* let hexScheme = getSchemeArray($scheme.light, false);
+        hexScheme.forEach((col) => {
+            if (col.name == "primary" && formConfig.primary == undefined) {
+                formConfig.primary = col.color;
+            }
+            if (col.name == "secondary" && (formConfig.secondary == undefined || !secondaryEnabled)) {
+                formConfig.secondary = col.color;
+            }
+            if (col.name == "secondary" && (formConfig.tertiary == undefined || !tertiaryEnabled)) {
+                formConfig.tertiary = col.color;
+            }
+            if (col.name == "tertiary" && (formConfig.error == undefined || !errorEnabled) ) {
+                formConfig.error = col.color;
+            }
+        }); */
+
+        updateUIColors(formConfig);
+    };
+    
 </script>
 
-<div class="border-2 rounded-md w-max px-8 py-4 mx-auto">
-<form on:submit={formData} bind:this={form}>
-    <ColorInput name="primary" value={$config.primary}/>
-    <ColorInput name="secondary" value={$config.secondary != undefined ? $config.secondary : "#000000"}/>
-    <TextInput name="secondary" label="Secondary color" required={false}/>
-    <TextInput name="tertiary" label="Tertiary color" required={false}/>
-    <TextInput name="error" label="Error color" required={false}/>
 
-    <SubmitButton>Generate</SubmitButton>
-
+<form on:submit={formSubmitHandler}>
+    <div class="flex flex-row w-fit mx-auto space-x-4">
+        <ColorInput label="Primary" disableable={false} enabled={true} bind:value={primary} />
+        <ColorInput label="Secondary" bind:value={secondary} bind:enabled={secondaryEnabled}/>
+        <ColorInput label="Tertiary" bind:value={tertiary} bind:enabled={tertiaryEnabled} />
+        <ColorInput label="Error" bind:value={error} bind:enabled={errorEnabled}/>
+    </div>
+    <div class="w-fit mx-auto mt-4">
+        <SubmitButton type="submit">Generate</SubmitButton>
+    </div>
 
 </form>
-    
-</div>
+
