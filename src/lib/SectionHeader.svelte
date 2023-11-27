@@ -1,1 +1,1 @@
-<h2 class="text-3xl w-fit mx-auto mt-4 mb-8"><slot/></h2>
+<h2 class="text-3xl w-fit mx-auto mt-6 mb-4"><slot/></h2>

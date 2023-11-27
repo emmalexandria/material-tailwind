@@ -14,10 +14,10 @@
 </script>
 
 <div
-    class={`grid grid-cols-4 px-8 py-4 space-y-4 rounded-lg mb-4 ${
+    class={`grid grid-cols-4 px-4 py-4 space-y-4 rounded-lg mb-4 drop-shadow-lg ${
         dark
             ? "bg-background-dark"
-            : "bg-background-light border border-outline"
+            : "bg-background-light"
     }`}
 >
     {#each schemeHex as hex}

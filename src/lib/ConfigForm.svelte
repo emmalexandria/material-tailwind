@@ -29,8 +29,6 @@
         if(tertiaryEnabled) formConfig["tertiary"] = tertiary
         if(errorEnabled) formConfig["error"] = error
 
-        console.log(formConfig)
-
         $config = formConfig;
         /* let hexScheme = getSchemeArray($scheme.light, false);
         hexScheme.forEach((col) => {

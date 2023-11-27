@@ -48,7 +48,6 @@ export function getHexTones(palette: TonalPalette) {
         if (i == 90) hexPalette.push(hexFromArgb(palette.getHct(95).toInt()))
     }
 
-    console.log(hexPalette);
     return hexPalette;
 }
 
