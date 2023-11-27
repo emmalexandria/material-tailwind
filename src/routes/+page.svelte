@@ -7,12 +7,12 @@
 </script>
 
 <svelte:head>
-    <title>M3 Tailwind Colour Generator</title>
+    <title>M3 + Tailwind Generator</title>
     <meta name="description" content="Easy to use tool that generates a set of Material 3 colours for use in TailwindCSS">
 </svelte:head>
 
 <div class="w-fit mx-auto">
-<h1 class="text-5xl text-center font-bold mb-8">M3 & Tailwind Scheme Generator</h1>
+<h1 class="text-5xl text-center font-bold mb-8">M3 + Tailwind Generator</h1>
 <div>
     <SectionHeader>1. Configuration</SectionHeader>
     <div class="px-4 py-4 rounded-md w-min mx-auto bg-surface drop-shadow-lg">
