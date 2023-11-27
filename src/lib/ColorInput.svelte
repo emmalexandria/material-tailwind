@@ -6,9 +6,10 @@
 
     import ColorPicker from "svelte-awesome-color-picker";
     import Checkbox from "./Checkbox.svelte";
+    import CheckboxLabel from "./CheckboxLabel.svelte";
 </script>
 
-<div class="flex flex-row align-center">
+<div class="flex flex-row items-center">
     <div
         class={`${
             !enabled && disableable
@@ -20,5 +21,6 @@
     </div>
     {#if disableable}
         <Checkbox id={label} bind:checked={enabled}/>
+        <!-- <CheckboxLabel id={label} bind:checked={enabled} {label}/> -->
     {/if}
 </div>
