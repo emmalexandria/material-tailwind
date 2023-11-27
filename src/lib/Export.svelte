@@ -14,7 +14,7 @@
 </script>
 
 
-<pre id="json" class="h-96 overflow-y-auto bg-surface-variant rounded drop-shadow-lg drop-shadow-surface-variant p-4">{JSON.stringify(tailwindConfig, undefined, 2)}</pre>
+<pre id="json" class="h-96 overflow-y-auto bg-surface-variant rounded drop-shadow-lg p-4">{JSON.stringify(tailwindConfig, undefined, 2)}</pre>
 
 <div class="flex flex-row mt-4 justify-between">
     <p class="italic text-center my-2">Put this in the colors section of tailwind.config.js</p>
