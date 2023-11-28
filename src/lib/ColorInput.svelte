@@ -3,13 +3,12 @@
     export let label: string;
     export let disableable: boolean = true;
     export let enabled: boolean = false;
-
-    import ColorPicker from "svelte-awesome-color-picker";
+    
     import Checkbox from "./Checkbox.svelte";
-    import CheckboxLabel from "./CheckboxLabel.svelte";
+    import ColorPicker from "./ColorPicker.svelte";
 </script>
 
-<div class="flex flex-row items-center">
+<div class="flex flex-row items-start">
     <div
         class={`${
             !enabled && disableable
@@ -17,7 +16,10 @@
                 : "opacity-100"
         }`}
     >
-        <ColorPicker isTextInput={true} {label} bind:hex={value} />
+        <label for={label} class="w-fit mr-2 block">
+            <ColorPicker bind:value={value} {label}/>
+            {label}
+        </label>
     </div>
     {#if disableable}
         <Checkbox id={label} bind:checked={enabled}/>
